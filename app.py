@@ -16,8 +16,9 @@ credentials = Credentials.from_service_account_info(creds_dict, scopes=scopes)
 gc = gspread.authorize(credentials)
 
 # Leer parámetro de la URL
-query_params = st.experimental_get_query_params()
-sheet_id = query_params.get("sheet_id", [None])[0]
+query_params = st.query_params
+sheet_id = query_params.get("sheet_id", None)
+
 
 if not sheet_id:
     st.error("❌ No se proporcionó ID de hoja. Contacta al organizador del evento.")
